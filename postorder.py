@@ -1,5 +1,5 @@
 from app import app, orders
-from flask import jsonify, request
+from flask import jsonify
 # import ast
 
 @app.route('/api/v1/orders', methods=['POST'])
@@ -11,5 +11,5 @@ def post_order():
    # data=ast.literal_eval(data)
    new_index = len(orders) + 1
    # print(len(data))
-   orders[new_index] = [data['date'], data['description'], data['price'], data['status'], data['address'], data['deliveryTime']]
+   orders[new_index] = [data['date'], data['description'], data['price'], data['status']]
    return jsonify({'data': orders[new_index]}), 201
