@@ -1,6 +1,8 @@
-import getgenorders
-import postorder
-import putorder
+
+from app.getgenorders import get_one_orders
+from app.getgenorders import get_all_orders
+from app.postorder import post_order
+from app.putorder import update_order
 def test_get_one_order():
     orders = get_one_order(orders[1])
     assert orders == 1
