@@ -1,0 +1,19 @@
+env:
+ 
+language: python
+python:
+    - "2.7"
+
+install:
+    - pip install -r requirements.txt
+
+# Run tests
+script:
+    - pytest
+    - coverage run --source=api -m pytest && coverage report
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+after_success:
+    - coveralls
