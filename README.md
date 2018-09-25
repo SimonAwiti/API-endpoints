@@ -13,12 +13,24 @@
 * Update the order status.
 ## Here is a list of the functioning endpoints
 
-| EndPoint                | Functionality        | Links             |
+| EndPoint                | Functionality        | Routes            |
 | :---                    |     :---:            | :---              |
 | GET /orders             | Get all orders       | /api/v1/orders    |
 | GET /orders/<orderId>   | Get order by order id| /api/v1/orders/id |
 | POST /orders            | Adds an order        | /api/v1/orders    |
 | PUT /orders             | Edit orders          | /api/v1/orders/id |
   
+## Testing the endpoints
 
+* Install python then using pip instal .. install flask
+* clone the repo
+* Ensure that postman is installed
+* From your terminal locate the repo and run: python run.py
+* open postman and test the endpoints
+* Use unittest to run the the tests
 
+## This application has been deployed on Heroku 
+[click to view](https://dashboard.heroku.com/apps/fast-food-ap/logs)
+
+# Written by: Simon Awiti
+#### Copyright © Andela 2018 
