@@ -1,6 +1,5 @@
 from flask import Flask, json, jsonify, abort, request
 from data import orders
-from data import orders
 app=Flask(__name__)
 
 
