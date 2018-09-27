@@ -18,18 +18,18 @@ def add_new_order():
    
     }
     orders.append(order)
-    return jsonify({'order': order})
+    return jsonify({'Message: order posted succesfully to the orders list': order})
 
 @app.route('/api/v1/orders', methods=['GET'])
 def get_all_orders():
-    return jsonify ({'orders':orders})
+    return jsonify ({'Message: List of all placed orders':orders})
 
 @app.route('/api/v1/orders/<int:Id>', methods=['GET'])
 def get_order(Id):
     order = [order for order in orders if order['id'] == Id]
     if len(order) == 0:
         abort(404)
-    return jsonify({'order': order[0]})
+    return jsonify({'Message: Order as per your ID': order[0]})
 
 @app.route('/api/v1/orders/<int:id>', methods=['PUT'])
 def update_order_status(id):
@@ -39,7 +39,7 @@ def update_order_status(id):
     order[0]['status'] = request.json.get('status', order[0]['status'])
     order[0]['address'] = request.json.get('address', order[0]['address'])
     order[0]['deliveryTime'] = request.json.get('deliveryTime', order[0]['deliveryTime'])
-    return jsonify({'order':order[0]})
+    return jsonify({'Messaage:Order edited succesfully':order[0]})
 
 
 
