@@ -35,11 +35,10 @@ def get_order(Id):
 def update_order_status(id):
     order = [ order for order in orders if order['id'] == id]
     order[0]['id'] = request.json.get('id', order[0]['id'])
-    order[0]['description'] = request.json.get('description', order[0]['description'])
     order[0]['status'] = request.json.get('status', order[0]['status'])
-    order[0]['address'] = request.json.get('address', order[0]['address'])
-    order[0]['deliveryTime'] = request.json.get('deliveryTime', order[0]['deliveryTime'])
-    return jsonify({'Messaage:Order edited succesfully':order[0]})
-
+    #if order[0]['status'] is not json({'delivered'}):
+        #return jsonify ({'message :order cannot be edited':order[0]})
+    return jsonify({'Messaage:Order edited succesfully(note:status can only be delivered, pending or rejected':order[0]})
+    #return jsonify ({'message':'order cannot be edited':order[0]})
 
 
