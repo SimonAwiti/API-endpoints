@@ -5,6 +5,8 @@
 
 # API-endpoints
 
+## Postman Documentation
+[Documentation](https://documenter.getpostman.com/view/5353857/RWgjZhQb)
 
 ## The following are API endpoints enabling one to: 
 * Place a new order for food.
