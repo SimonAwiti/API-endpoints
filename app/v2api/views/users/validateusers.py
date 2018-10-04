@@ -1,3 +1,4 @@
+"""checking user validity"""
 def validate_data_signup(data):
     """validate user details"""
     try:

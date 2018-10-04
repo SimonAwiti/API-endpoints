@@ -1,13 +1,12 @@
 import os
 import psycopg2
 
-
+#importing the tables in form of queries
 from .db import queries
 
 def dbconnect():
-    """connect to db"""
+    #"""connect to db"""
     url = os.getenv('DATABASE_URL')
-    # print(url)
     return psycopg2.connect(url)
 
 
@@ -25,4 +24,4 @@ def initializedb():
 
     except (Exception, psycopg2.DatabaseError) as error:
         print("DB Error")
-        print(error)
+    

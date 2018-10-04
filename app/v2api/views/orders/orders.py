@@ -1,12 +1,13 @@
-from flask import Flask, request, flash, redirect, url_for, jsonify, session
+"""creating bp routes for orders"""
+from flask import Blueprint, request, jsonify
 from app.v2api.models.ordersmodels import Order
 from app.v2api.views.orders.validateorders import validate_orders
 
 orderObject = Order()
-ordersapp
-app = Flask(__name__)
 
-@app.route('/api/v2/orders', methods=['POST'])
+v2API_blueprints = Blueprint('v2API', __name__, url_prefix='/api/v2/orders')
+
+@v2API_blueprints.route('/', methods=['POST'])
 def order():
     """ Place an order for food."""
     data = request.get_json()
@@ -26,18 +27,17 @@ def order():
         return resp
     return jsonify({"message": resp}), 400
 
-@app.route('/api/v2/orders', methods=['GET'])
+@v2API_blueprints.route('/', methods=['GET'])
+#""" Get all orders"""
 def get_all_orders():
-    """ Get all orders"""
     data = orderObject.get_orders()
     return data
 
-@app.route('/api/v2/orders/<int:order_id>', methods=['GET', 'PUT'])
+@v2API_blueprints.route('/<int:order_id>', methods=['GET', 'PUT'])
+#""" getting and editing an order """
 def order_editing(order_id, **kwargs):
-    """ getting and editing an order """
-
     if request.method == 'PUT':
-        ''''PUT Update the status  of an order'''
+        #''''PUT Update the status  of an order'''
         data = request.get_json()
         food_id = data['food_id']
         description = data['description']
@@ -52,13 +52,6 @@ def order_editing(order_id, **kwargs):
             deliveryTime)
         return resp
     else:
-        ''''gets a specific order'''
+        #''''gets a specific order'''
         resp = orderObject.get_order(order_id)
         return resp
-
-
-#@app.route('/api/v2/orders/<int:Id>', methods=['GET'])
-#def userorders(client_id, **kwargs):
-    """ Get the order history for a particular user."""
-    #resp = orderObject.get_user_orders(client_id)
-    #return resp

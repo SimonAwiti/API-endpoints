@@ -7,7 +7,7 @@ app = Flask(__name__)
 class Testendpoints(unittest.TestCase):
     def test_allorders(self):
         result = app.test_client()
-        response = result.get('/api/v1/orders', content_type='application/json')
+        response = result.get('/api/v2/orders', content_type='application/json')
         self.assertTrue(response.status_code, 200)
     
     def test_postorder(self):
@@ -18,7 +18,7 @@ class Testendpoints(unittest.TestCase):
             "address": "Kayole",
             "description": "Kuku Fry"
         }
-        response = result.post('/api/v1/orders', data=json.dumps(data), content_type='application/json')
+        response = result.post('/api/v2/orders', data=json.dumps(data), content_type='application/json')
         self.assertTrue(response.status_code, 200)
 
     def test_updateorders(self):

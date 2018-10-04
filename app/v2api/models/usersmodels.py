@@ -1,6 +1,6 @@
 from flask import jsonify, session
 import re
-from 
+
 class User(object):
     def __init__(self):
         '''begin with an empty list'''

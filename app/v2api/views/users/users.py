@@ -1,15 +1,13 @@
-from flask import request, flash, redirect, url_for, jsonify, session
+"""creating users routes"""
+from flask import Blueprint, request, jsonify, session
 from app.v2api.models.usersmodels import User
 from app.v2api.views.users.validateusers import validate_data_signup, validate_data_login
 
-
-
-from flask import Flask
-app = Flask(__name__)
+v2API_auth_blueprints = Blueprint('v2API_auth', __name__, url_prefix='/api/v2/users')
 
 userObject = User()
 
-@app.route('/users/signup', methods=["POST"])
+@v2API_auth_blueprints.route('/signup', methods=["POST"])
 def register():
     """creating user account."""
     data = request.get_json()
@@ -26,7 +24,7 @@ def register():
         return response
     return jsonify({"message": resp}), 400
 
-@app.route('/users/login', methods=["POST"])
+@v2API_auth_blueprints.route('/login', methods=["POST"])
 def login():
     """ loging in user """
     data = request.get_json()
@@ -38,12 +36,7 @@ def login():
         return resp
     return jsonify({"message": resp}), 401
 
-@app.route('/users', methods=["GET"])
-def users():
-    data = userObject.get_users()
-    return data
-
-@app.route('/users/logout')
+@v2API_auth_blueprints.route('/logout')
 def logout():
     """ logout user."""
     if 'username' in session:
@@ -51,3 +44,4 @@ def logout():
         return jsonify({"message": "Succeffully logout."})
     return jsonify({
         "message": "Not logged in."}), 200
+        

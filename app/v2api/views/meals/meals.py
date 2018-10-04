@@ -1,34 +1,23 @@
-from flask import json, jsonify, abort, request
-from data import MEALS
+"""creating bp routes for meals
+from flask import Blueprint, request, jsonify
+from app.v2api.models.mealsmodels import Meal
+from app.v2api.views.meals.validatemeals import validate_meals
 
-class MealsServer:
-    def __init__(self):
-        self.globalData = MEALS
-from flask import Flask
-app = Flask(__name__)
+instantiate class
+mealObject = Meal()
 
-@app.route('/')
-def getIndexPage():
-    return "welcone to fastfood fast"
+v2API_menu_blueprints = Blueprint('v2API', __name__, url_prefix='/api/v2/')
 
-@app.route('/api/v2/meals', methods=['POST'] )
-def add_new_meal():
-    meal = {
-        'id': MEALS[-1]['id'] + 1,
-        'meal category': request.json['meal category']
-    }
-    MEALS.append(meal)
-    return jsonify({'message': 'List of all meals', "meals":MEALS})
-
-@app.route('/api/v2/meals', methods=['GET'])   
-def get_list_of_meals():
-    return jsonify ({'message':'List of all meals', "meals":MEALS})
-
-
-
-
-   
-
-
-
-
+@v2API_menu_blueprints.route('/menu', methods=["GET", "POST"])
+def meals():
+    Method to create and retrieve meal.
+    if request.method == "POST":
+        data = request.get_json()
+        res = validate_data(data)
+        if resp == "valid":
+            mealcategory = data['mealcategory']
+            res = mealObject.create_meal(mealscategory)
+            return resp
+        return jsonify({"message": res}), 400
+    data = mealObject.get_meal()
+    return data"""
